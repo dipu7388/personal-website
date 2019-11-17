@@ -1,7 +1,7 @@
 <header>
 
   <!-- logo -->
-  <a class="logo" [routerLink]="['/']"  ><span>DK</span></a>
+  <a class="logo" [routerLink]="['/']" (click)="close()"  ><span>DK</span></a>
 
   <!-- navigation button -->
   <div class="menu-button " #menubutton (click)="toggle()"  [ngClass]="{'active':( menuFlag$| async)}">

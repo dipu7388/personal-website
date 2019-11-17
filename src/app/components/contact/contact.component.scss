@@ -1,0 +1,64 @@
+@import 'src/sass/variables';
+@import 'src/sass/mixins';
+@import 'src/sass/grid';
+
+.section-contact {
+  text-align: center; }
+  .section-contact .contact-detail h3 {
+    font-size: 32px;
+    font-weight: 500; }
+  .section-contact .contact-detail p {
+    margin-bottom: 10px; }
+  .section-contact .contact-detail .contact-info li {
+    margin-bottom: 10px; }
+    .section-contact .contact-detail .contact-info li .title {
+      display: block;
+      font-size: 18px;
+      font-weight: 800;
+      display: inline-block;
+      position: relative; }
+      .section-contact .contact-detail .contact-info li .title:before {
+        content: "";
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        bottom: 0;
+        left: 0%;
+        background: #e1e1e1;
+        -webkit-border-radius: 2px;
+        border-radius: 2px; }
+    .section-contact .contact-detail .contact-info li .value {
+      display: block;
+      font-size: 14px; }
+  .section-contact .contact-detail .social-media h4 {
+    font-size: 18px;
+    font-weight: 800;
+    position: relative;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.5em;
+    display: inline-block; }
+    .section-contact .contact-detail .social-media h4:before {
+      content: "";
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      background: #e1e1e1;
+      -webkit-border-radius: 2px;
+      border-radius: 2px; }
+  .section-contact .contact-detail .social-media .social-media-icons {
+    margin-top: 5px; }
+    .section-contact .contact-detail .social-media .social-media-icons a {
+      display: inline-block;
+      margin: 0 10px;
+      font-size: 24px;
+      color: #a1a1a1; }
+      .section-contact .contact-detail .social-media .social-media-icons a:hover {
+        color: #e1e1e1; }
+
+.section-contact .google-map {
+  margin-top: 50px;
+  margin-bottom: 50px; }
+  .section-contact .google-map #map {
+    height: 400px; }

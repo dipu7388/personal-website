@@ -5,12 +5,17 @@ $ta-secondary: mat-palette($mat-light-blue);
 $ta-warn: mat-palette($mat-red);
 
 
-$theme: mat-light-theme($ta-primary, $ta-secondary, $ta-warn);    
+$theme: mat-light-theme($ta-primary, $ta-secondary, $ta-warn);
 @include angular-material-theme($theme);
 
 
 //font family
 $font: 'Roboto';
+
+$bg-secondary: #ff9800;
+$bg-primary: #2a2b30;
+$bg-body: #040404;
+
 
 //font sizes
 $font-size: 14px;
@@ -30,3 +35,14 @@ $font-darker: rgba(0, 0, 0, 0.87);
 
 //alignment
 $default-padding: 24px;
+
+
+$s : ();
+
+@for $i from 1 to 200 {
+    $s : append($s , #{($i / 1680) * 100}vw  )
+}
+
+@function resp-calc($min, $rest){
+    @return calc(#{$min}px +  #{nth($s , $rest )});
+}

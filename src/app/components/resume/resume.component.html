@@ -1,1 +1,164 @@
-<p>resume works!</p>
+
+<div class="page  section-resume">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-heading">
+          <h2 data-shadow="Resume">Resume</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-10">
+
+      <!--Experience Column Start-->
+      <div class="col-lg-6">
+        <div class="sub-heading">
+          <h3>Work Experience</h3>
+        </div>
+
+        <!--experience timeline start-->
+        <ul class="experience timeline">
+
+          <!--timeline item-->
+          <li class="event" *ngFor="let exp of experience">
+            <h4>{{exp?.role}}</h4>
+            <h5>
+              <span class="date">{{exp?.duration}}</span>
+              <span class="company"><a href="{{exp?.link? exp?.link: '#'}}">{{exp?.company}}</a></span>
+              <span class="location">{{exp?.location}}</span>
+            </h5>
+            <p></p>
+          </li>
+        </ul>
+        <!--experience timeline end-->
+
+      </div>
+      <!--Experience Column End-->
+ <!-- Languages start -->
+ <div class="col-lg-6">
+    <div class="sub-heading">
+      <h3>Languages</h3>
+    </div>
+
+    <!--language timeline start-->
+    <ul class="language timeline">
+      <!--timeline item-->
+
+      <li class="event" *ngFor="let lang of language">
+        <h4>{{lang?.name}}</h4>
+        <h5>
+          <span class="date">{{lang?.proficiency}}</span>
+        </h5>
+      </li>
+
+    </ul>
+    <!--education timeline end-->
+
+  </div>
+  <!-- languages ends -->
+      <!--Education Column Start-->
+      <div class="col-lg-6">
+        <div class="sub-heading">
+          <h3>Education</h3>
+        </div>
+
+        <!--education timeline start-->
+        <ul class="education timeline">
+          <!--timeline item-->
+
+          <li class="event" *ngFor="let edu of education">
+            <h4>{{edu?.course}}</h4>
+            <h5>
+              <span class="date">{{edu?.duration}}</span>
+              <span class="company"><a href="{{edu?.link? edu?.link: '#'}}">{{edu?.institute}}</a></span>
+              <span class="location">{{edu?.location}}</span>
+            </h5>
+            <p *ngFor="let p of edu?.projects">
+              <span>{{p}}</span>
+            </p>
+          </li>
+
+        </ul>
+        <!--education timeline end-->
+
+      </div>
+      <!--Education Column End-->
+
+      <!-- Projects start -->
+      <div class="col-lg-6">
+        <div class="sub-heading">
+          <h3>Projects</h3>
+        </div>
+
+        <!--education timeline start-->
+        <ul class="projects timeline">
+          <!--timeline item-->
+
+          <li class="event" *ngFor="let proj of projects">
+            <h4>{{proj?.name}}</h4>
+            <h5>
+              <span class="date">{{proj?.duration}}</span>
+              <span class="company"><a href="{{proj?.link? proj?.link: '#'}}">{{proj?.name}}</a></span>
+            </h5>
+            <p *ngFor="let p of proj?.features">
+              <span>{{p}}</span>
+            </p>
+          </li>
+
+        </ul>
+        <!--education timeline end-->
+
+      </div>
+      <!-- Projects ends -->
+
+
+    </div>
+
+    <!--Skills Row Start-->
+    <div class="row">
+
+
+
+      <!-- Coding Skills Column Start -->
+      <div class="col-lg-6 skills">
+        <div class="sub-heading">
+          <h3 data-shadow="Coding Skills">Front End Skills</h3>
+        </div>
+
+        <!--skill item-->
+        <div class="skill-item"  *ngFor="let s of feSkills">
+          <h4 class="progress-title">{{s?.name}}</h4>
+          <div class="progress">
+            <div class="progress-bar"  [style.width]="s?.confidence">
+              <div class="progress-value">{{s?.confidence}}</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-6 skills">
+          <div class="sub-heading">
+            <h3 data-shadow="Coding Skills">Back End Skills</h3>
+          </div>
+
+          <!--skill item-->
+          <div class="skill-item"  *ngFor="let s of beSkills">
+            <h4 class="progress-title">{{s?.name}}</h4>
+            <div class="progress">
+              <div class="progress-bar"  [style.width]="s?.confidence">
+                <div class="progress-value">{{s?.confidence}}</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      <!-- Coding Skills Column End -->
+
+    </div>
+    <!--Skills Row End-->
+
+  </div>
+
+</div>

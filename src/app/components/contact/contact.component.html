@@ -1,1 +1,95 @@
-<p>contact works!</p>
+<div class="page section-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-heading">
+                    <h2 data-shadow="Contact">Contact</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!--Contact Information Column Start-->
+            <div class="col-lg-6 contact-detail">
+                <div class="sub-heading mb-20">
+                    <h3>Get In Touch</h3>
+                </div>
+                <p>For more information feel free to contact me by filing  the form  or you can call, and ping me on social media.</p>
+                <ul class="contact-info">
+                    <li class="phone">
+                        <span class="title">Phone</span>
+                        <a href="tel:+919560763929" class="value">(+91) 9560763929</a>
+                    </li>
+                    <li class="address">
+                        <span class="title">Address</span><span class="value">Gurugram-122001 Haryana, India</span>
+                    </li>
+                    <li class="email">
+                        <span class="title">E-mail</span>
+                        <a href="mailto:dheerendra.mcs16.du@gmail.com" class="value">dheerendra.mcs16.du@gmail.com</a>
+                    </li>
+                </ul>
+
+                <!--social media icons-->
+                <div class="social-media">
+                    <h4>Follow</h4>
+                    <div class="social-media-icons">
+                      <a class="social-link" [title]="social?.name" href="{{social?.url}}" target="_blank" *ngFor="let social of socialItems">
+                          <i [class]="social?.icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--Contact Information Column End-->
+
+
+            <!--Contact Form Column Start-->
+            <div class="col-lg-6">
+                <form id="contact-form"  [formGroup]="dataForm" (ngSubmit)="submitForm()" novalidate>
+                    <!--input field-->
+                    <div class="input">
+                        <input class="input-field cf-validate" formControlName="name"  [ngClass]="{'is-invalid': displayMessage?.name}" id="cf-name" type="text" name="name" placeholder="Your Name">
+                        <span class="invalid-feedback">
+                            {{displayMessage?.name}}
+                          </span>
+                      </div>
+
+                    <!--input field-->
+                    <div class="input">
+                        <input class="input-field cf-validate" id="cf-email" type="text" name="email" placeholder="Your Email" formControlName="email" [ngClass]="{'is-invalid': displayMessage.email}">
+                        <span class="invalid-feedback">
+                          {{displayMessage?.email}}
+                        </span>
+                    </div>
+
+                    <!--input field-->
+                    <div class="input">
+                        <textarea class="input-field cf-validate" id="cf-message" name="message" rows="5" placeholder="Message"  formControlName="message" [ngClass]="{'is-invalid': displayMessage.comment}" ></textarea>
+                        <span class="invalid-feedback">
+                            {{displayMessage?.message}}
+                          </span>
+                      </div>
+
+                    <div class="alert-container col-md-12"></div>
+
+                    <!--submit button-->
+                    <div class="submit-button text-center">
+                        <button class="main-btn" id="cf-submit"  [disabled]="!dataForm.valid" >Send Message</button>
+                    </div>
+
+                </form>
+            </div>
+            <!--Contact Form Column End-->
+
+        </div>
+
+        <!--Google Map Row Start-->
+        <div class="row">
+            <div class="col-md-12 google-map">
+
+            </div>
+        </div>
+        <!--Google Map Row End-->
+
+    </div>
+
+</div>

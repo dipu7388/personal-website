@@ -1,4 +1,9 @@
 <dk-header #menu></dk-header>
-<div class="pages-stack" [ngClass]="{'active':( menuFlag$| async)}">
-    <router-outlet></router-outlet>
+<div class="pages-stack" [ngClass]="{'active':( menuFlag$| async) , 'inactive': !( menuFlag$| async)}">
+    <div class="simplebar-scroll-content" >
+        <div class="simplebar-content" >
+          <router-outlet></router-outlet>
+
+        </div>
+      </div>
 </div>
