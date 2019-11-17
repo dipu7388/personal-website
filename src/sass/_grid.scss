@@ -1,0 +1,70 @@
+@import './_mixins';
+
+//variables
+$gid-columns: 12;
+$gutter: 24px;
+$grid-max-width: 100%;
+
+//breakpoints
+$breakpoint-medium: "only screen and (min-width: 60em)";
+// $breakpoint-medium: "only screen and (min-width: 30em)";
+
+*,
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    @include boxSizing(border-box);
+}
+
+%clearfix {
+    *zoom: 1;
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after{
+        clear: both;
+    }
+}
+
+.wrapper{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.wrapper,
+.row{
+    @extend %clearfix;
+}
+
+img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+[class*='column-'] {
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    margin-right: $gutter;
+}
+
+.row [class*='column-']:last-child{
+    margin-right: 0;
+}
+
+@media #{$breakpoint-medium}{
+    .wrapper{
+        width: 100%;
+        max-width: $grid-max-width;
+    }
+    @for $i from 1 through 12 {
+        .column-#{$i}{
+            width: calc( ( #{$grid-max-width} - ( ( #{$gid-columns} - 1 ) * #{$gutter} ) )  / #{$gid-columns} * #{$i} + (#{$i} - 1) * #{$gutter});
+            display: inline-block;
+        }
+    }
+}

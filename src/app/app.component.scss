@@ -1,0 +1,19 @@
+.pages-stack.active{
+  transform: translate3d(0px, 75%, -200px) rotate(0.01deg);
+  cursor: pointer;
+    -webkit-transition: opacity 0.45s, -webkit-transform 0.45s;
+    transition: opacity 0.45s, -webkit-transform 0.45s;
+    -o-transition: transform 0.45s, opacity 0.45s;
+    transition: transform 0.45s, opacity 0.45s;
+    transition: transform 0.45s, opacity 0.45s, -webkit-transform 0.45s;
+    -webkit-transition-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+    -o-transition-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+    transition-timing-function: cubic-bezier(0.6, 0, 0.4, 1);
+    -webkit-box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
+}
+.pages-stack{
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  transition: transform 0.45s, opacity 0.45s;
+}

@@ -1,0 +1,30 @@
+<header>
+
+  <!-- logo -->
+  <a class="logo" [routerLink]="['/']"  ><span>DK</span></a>
+
+  <!-- navigation button -->
+  <div class="menu-button " #menubutton (click)="toggle()"  [ngClass]="{'active':( menuFlag$| async)}">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- navigation menu -->
+  <nav class="nav-menu "  [ngClass]="{'active':( menuFlag$| async)}">
+    <div class="nav-menu--links">
+      <a class="nav-menu--link" (click)="close()" href="#home" *ngFor="let m of menu" [routerLink]="[m?.url]" routerLinkActive="active" ><i [class]="m?.icon"></i><span>{{m?.name}}</span></a>
+    </div>
+
+    <!-- social links -->
+    <div class="social-links">
+      <a class="social-link" (click)="close()" [title]="social?.name" href="{{social?.url}}" target="_blank" *ngFor="let social of socialItems">
+        <i [class]="social?.icon"></i>
+      </a>
+    </div>
+    <!-- footer -->
+    <dk-footer></dk-footer>
+
+  </nav>
+
+</header>

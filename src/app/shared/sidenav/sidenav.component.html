@@ -1,0 +1,6 @@
+<mat-sidenav-container [ngClass]="classContainer">
+  <mat-sidenav #navside [ngClass]="classSidenav" [mode]="mode" [position]="posSidenav">
+      <ng-content select="label"></ng-content>
+  </mat-sidenav>
+  <ng-content select="content"></ng-content>
+</mat-sidenav-container>

@@ -1,0 +1,4 @@
+<dk-header #menu></dk-header>
+<div class="pages-stack" [ngClass]="{'active':( menuFlag$| async)}">
+    <router-outlet></router-outlet>
+</div>

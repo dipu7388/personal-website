@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+
+$ta-primary: mat-palette($mat-indigo);
+$ta-secondary: mat-palette($mat-light-blue);
+$ta-warn: mat-palette($mat-red);
+
+
+$theme: mat-light-theme($ta-primary, $ta-secondary, $ta-warn);    
+@include angular-material-theme($theme);
+
+
+//font family
+$font: 'Roboto';
+
+//font sizes
+$font-size: 14px;
+$font-smaller: 0.92rem;
+$font-smallest: 0.85rem;
+$font-larger: 1.14rem;
+$font-largest: 1.42rem;
+
+//font weights
+$font-light: 400;
+$font-heavy: 500;
+
+//font colors
+$font-color: rgba(0, 0, 0, 0.54);
+$font-fader: rgba(0, 0, 0, 0.38);
+$font-darker: rgba(0, 0, 0, 0.87);
+
+//alignment
+$default-padding: 24px;
