@@ -108,7 +108,7 @@ blockquote {
   background: $bg-secondary !important;
 }
 
-.section-resume .experience, .section-resume .language, .section-resume .projects, .section-resume .education {
+.section-resume .experience, .section-resume .language, .section-resume .projects, .section-resume .education, .company {
   border-color: $bg-secondary !important;
 }
 
@@ -975,7 +975,7 @@ a:hover {
   -o-transition: all .2s ease-in;
   transition: all .2s ease-in; }
   .main-btn:hover {
-    color: $bg-primary; }
+    color: $bg-primary !important;  }
 
 blockquote {
   font-size: 18px;

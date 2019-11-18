@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControlName } from '@angular/fo
 import { GenericValidator } from 'src/app/common/validations/generic-validator';
 import { Observable, fromEvent, merge } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { HttpService } from 'src/app/services/http.service';
 @Component({
   selector: 'dk-contact',
   templateUrl: './contact.component.html',
@@ -18,6 +19,7 @@ export class ContactComponent implements OnInit, AfterViewInit {
   emailRegex = new RegExp('^[a-zA-Z0-9._]+@[a-zA-Z0-9.]+[.]{1}[a-zA-Z0-9]+$');
   constructor(
     private fb: FormBuilder,
+    private httpService: HttpService
 
   ) {
     this.validationMessages = {
@@ -64,39 +66,31 @@ export class ContactComponent implements OnInit, AfterViewInit {
 
   submitForm(): void {
     if (this.dataForm.valid) {
-      // if (this.dataForm.dirty) {
-      //   let blog = new BlogCommentModel();
-      //   blog.name = this.dataForm.value.name;
-      //   blog.email = this.dataForm.value.email;
-      //   blog.rating = this.dataForm.value.rating;
-      //   blog.comment = this.dataForm.value.comment;
-      //   blog.blogId = this.blogId;
-      //   this.submitButtonValue = 'Posting...';
-      //   this.submitButtonState = 0;
-      //   this.dataForm.disable();
-      //   this.contentService.addCommentToBlog((output) => {
-      //     if (output.error == false) {
-      //       this.onSaveComplete();
-      //       this.submitButtonValue = 'Posted';
-      //       this.submitButtonState = 1;
-      //       this.dataForm.enable();
-      //       this.contentService.updatePostCommentClicked(true);
-      //       setTimeout(() => {
-      //         this.dataForm.reset();
-      //         this.submitButtonState = -1;
-      //         this.submitButtonValue = 'Post';
-      //       }, 2000);
-      //     } else {
-      //       // this.patchValues(blog);
-      //       this.submitButtonValue = 'Not Posted';
-      //       this.submitButtonState = 2;
-      //       this.dataForm.enable();
-      //     }
-      //   }, blog, this.blogId)
-      // } else {
-      //   this.onSaveComplete();
-      // }
-    }
+        let adminMailOptions = {
+          from: 'dharmadevi60@gmail.com',
+          to: 'aaaa7388@gmail.com',
+          subject: this.dataForm.value.name + 'Wants to connect you' ,
+          text: this.dataForm.value.message+ "   reply   "+ this.dataForm.value.email
+        };
+        let userMailOptions = {
+          from: 'dharmadevi60@gmail.com',
+          to:  this.dataForm.value.email,
+          subject: 'Thanks for pinggig me' ,
+          text: "I will get in touch shortly. or call me +91 99560763929"
+        };
+        this.dataForm.disable();
+        let url='https://dheerendra-alexa-joke-skill.herokuapp.com/api/sendMail';
+        let url2='https://localhost:3000/api/sendMail';
+        this.httpService.post(url, new Map(), adminMailOptions).then(data=>{
+          this.dataForm.enable();
+          this.dataForm.reset();
+
+        })
+        this.httpService.post(url, new Map(), userMailOptions).then(data=>{
+          this.dataForm.enable();
+          this.dataForm.reset();
+        })
+  }
   }
 
   keyPressOnlyNumbers(event: any) {
