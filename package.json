@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "http-server -p 8080 -c-1 dist/dheerendra"
+    "deploy": "http-server -p 8080 -c-1 dist/dheerendra",
+    "aot": "ng build --prod --aot --vendorChunk=true  --sourceMap=false --progress=true --optimization=true --lazyModules --build-optimizer  --crossOrigin=anonymous "
   },
   "private": true,
   "dependencies": {
