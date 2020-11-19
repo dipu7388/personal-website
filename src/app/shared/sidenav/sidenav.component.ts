@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'dk-sidenav',
@@ -8,7 +8,7 @@ import { MatSidenav } from '@angular/material';
 })
 export class SidenavComponent implements OnInit {
 
-  @ViewChild("navside",{ static: false}) navside : MatSidenav;
+  @ViewChild("navside") navside : MatSidenav;
   @Input("mode") mode:string;
   @Input("container-class") classContainer;
   @Input("sidenav-class") classSidenav;

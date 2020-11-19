@@ -46,20 +46,32 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
+              "outputHashing": "bundles",
               "sourceMap": false,
               "extractCss": true,
+              "progress": true,
+              "lazyModules": [ ],
+              "deleteOutputPath": true,
+              "assets": [],
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
+              "vendorChunk": true,
               "buildOptimizer": true,
+              "es5BrowserSupport": false,
+              "optimization": true,
+              "commonChunk": true,
+              "vendorSourceMap": false,
+              "crossOrigin": "anonymous",
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ],
               "serviceWorker": true,

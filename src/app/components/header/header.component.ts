@@ -15,7 +15,7 @@ export let socialItemsArray:Array <{name, url,icon}>=[
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @ViewChild("menubutton",{ static: false}) navside
+  @ViewChild("menubutton", {static: true}) navside
   menu:Array <{name, url,icon}>=[
     {name: "About", url: "/About", icon: "fas  fa-home"},
     {name: "Resume", url: "/Resume", icon: "fas fa-user"},

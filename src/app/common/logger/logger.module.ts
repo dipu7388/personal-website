@@ -15,7 +15,7 @@ export class LoggerModule {
                 'CoreModule is already loaded. Import it in the AppModule only');
         }
     }
-    static forRoot(config: LoggingConfig): ModuleWithProviders {
+    static forRoot(config: LoggingConfig): ModuleWithProviders<LoggerModule> {
         console.log(config);
         return {
             ngModule: LoggerModule,

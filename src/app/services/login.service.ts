@@ -5,7 +5,7 @@ import * as cryp from 'crypto-js';
 import { UserModel } from '../models/user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Constants } from '../common/constants';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({providedIn: 'root'})
 export class LoginService {
