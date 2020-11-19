@@ -44,10 +44,10 @@
 
             <!--Contact Form Column Start-->
             <div class="col-lg-6">
-                <form id="contact-form"  [formGroup]="dataForm" (ngSubmit)="submitForm()" novalidate>
+                <form id="contact-form"  [formGroup]="dataForm" disabled (ngSubmit)="submitForm()" novalidate>
                     <!--input field-->
                     <div class="input">
-                        <input class="input-field cf-validate" formControlName="name"  [ngClass]="{'is-invalid': displayMessage?.name}" id="cf-name" type="text" name="name" placeholder="Your Name">
+                        <input class="input-field cf-validate"  formControlName="name"  [ngClass]="{'is-invalid': displayMessage?.name}" id="cf-name" type="text" name="name" placeholder="Your Name">
                         <span class="invalid-feedback">
                             {{displayMessage?.name}}
                           </span>
@@ -73,7 +73,7 @@
 
                     <!--submit button-->
                     <div class="submit-button text-center">
-                        <button class="main-btn" id="cf-submit"  [disabled]="!dataForm.valid" >Send Message</button>
+                        <button class="main-btn" id="cf-submit"  [disabled]="!dataForm.valid || true" >Send Message</button>
                     </div>
 
                 </form>

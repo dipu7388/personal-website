@@ -35,7 +35,7 @@ export class ResumeComponent implements OnInit {
       duration: "(06/2019 – Present)",
       features: [
         "SPA app with responsiveness. multiple Template Designs for ecommerce platform.",
-        "PWA in (Point of sale apps)"
+        "Point of sale, with online support"
       ],
       link: "https://www.lsnetx.com/"
     },
@@ -144,10 +144,11 @@ export class ResumeComponent implements OnInit {
     }
   ];
   interests: string[] = [
+    "Data Science",
+    "Spring Boot",
     "Data Structure",
     "Algorithm",
     "Chat Bot Dev",
-    "Amazon Alexa Dev",
     "Music",
     "Badminton"
   ];

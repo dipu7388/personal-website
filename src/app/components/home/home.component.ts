@@ -12,7 +12,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     particlesJS.load("particles-js", "assets/particlesjs-config.json", () => {
-      console.log("callback - particles.js config loaded");
     });
     var textWrapper = document.querySelector(".ml11 .letters");
     textWrapper.innerHTML = textWrapper.textContent.replace(

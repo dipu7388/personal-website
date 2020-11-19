@@ -34,7 +34,11 @@
     .section-resume .experience h5 .date,.section-resume .experience h5 .company, .section-resume .education h5 .company, .section-resume .language h5 .date, .section-resume .projects h5 .date, .section-resume .education h5 .date {
       margin-right: 5px;
       padding-right: 10px;
-      border-right: 3px solid #e1e1e1 !important;; }
+      &:not(:last-child){
+        border-right: 3px solid #e1e1e1 !important;
+      }
+
+    }
   .section-resume .experience p, .section-resume .language p, .section-resume .projects p, .section-resume .education p {
     margin-bottom: 0;
     font-size: 16px; }

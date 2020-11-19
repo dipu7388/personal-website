@@ -2,7 +2,8 @@
 @import 'src/sass/variables';
 @import 'src/sass/mixins';
 @import 'src/sass/grid';
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'src/sass/theme';
+// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 $scroll: mat-palette($mat-indigo, 500);
 *{

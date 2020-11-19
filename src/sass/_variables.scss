@@ -1,12 +1,4 @@
-@import '~@angular/material/theming';
 
-$ta-primary: mat-palette($mat-indigo);
-$ta-secondary: mat-palette($mat-light-blue);
-$ta-warn: mat-palette($mat-red);
-
-
-$theme: mat-light-theme($ta-primary, $ta-secondary, $ta-warn);
-@include angular-material-theme($theme);
 
 
 //font family
