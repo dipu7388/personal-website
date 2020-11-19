@@ -1,7 +1,11 @@
 @import 'src/sass/variables';
 @import 'src/sass/mixins';
 @import 'src/sass/grid';
-
+.main-btn{
+  &[disabled]{
+    opacity: 0.5;
+  }
+}
 .section-contact {
   text-align: center; }
   .section-contact .contact-detail h3 {

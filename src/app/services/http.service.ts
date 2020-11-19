@@ -37,8 +37,8 @@ export class HttpService {
     });
     return new Promise<ResponseModel>((resolve, reject) => {
       this.http.get(environment.serviceUrl + '/' + url, { params: params }).subscribe(data => {
-        localStorage.setItem('token', data['token']);
-        resolve(new ResponseModel(true, 200, data['data'], data['msgList'], data['error'], data['otherInfo']));
+        localStorage.setItem('token', data["token"]);
+        resolve(new ResponseModel(true, 200, data["data"], data["msgList"], data["error"], data['otherInfo']));
       }, err => {
         if (err instanceof HttpErrorResponse){
           reject(new ResponseModel(false, err.status));
@@ -61,8 +61,8 @@ export class HttpService {
     });
     return new Promise<ResponseModel>((resolve, reject) => {
       this.http.delete(environment.serviceUrl + '/' + url, { params: params }).subscribe(data => {
-        localStorage.setItem('token', data['token']);
-        resolve(new ResponseModel(true, 200, data['data'], data['msgList'], data['error']));
+        localStorage.setItem('token', data["token"]);
+        resolve(new ResponseModel(true, 200, data["data"], data["msgList"], data["error"]));
       }, err => {
         if (err instanceof HttpErrorResponse){
           reject(new ResponseModel(false, err.status));
@@ -86,8 +86,8 @@ export class HttpService {
 
     return new Promise<ResponseModel>((resolve, reject) => {
       this.http.post(environment.serviceUrl + '/' + url, body, { params: params }).subscribe(data => {
-        localStorage.setItem('token', data['token']);
-        resolve(new ResponseModel(true, 200, data['data'], data['msgList'], data['error']));
+        localStorage.setItem('token', data["token"]);
+        resolve(new ResponseModel(true, 200, data["data"], data["msgList"], data["error"]));
       }, err => {
         if (err instanceof HttpErrorResponse){
           reject(new ResponseModel(false, err.status));

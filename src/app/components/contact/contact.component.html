@@ -44,10 +44,10 @@
 
             <!--Contact Form Column Start-->
             <div class="col-lg-6">
-                <form id="contact-form"  [formGroup]="dataForm" disabled (ngSubmit)="submitForm()" novalidate>
+                <form id="contact-form"  [formGroup]="dataForm"  (ngSubmit)="submitForm()" novalidate>
                     <!--input field-->
                     <div class="input">
-                        <input class="input-field cf-validate"  formControlName="name"  [ngClass]="{'is-invalid': displayMessage?.name}" id="cf-name" type="text" name="name" placeholder="Your Name">
+                        <input class="input-field cf-validate"   formControlName="name"  [ngClass]="{'is-invalid': displayMessage?.name}" id="cf-name" type="text" name="name" placeholder="Your Name">
                         <span class="invalid-feedback">
                             {{displayMessage?.name}}
                           </span>
@@ -55,7 +55,7 @@
 
                     <!--input field-->
                     <div class="input">
-                        <input class="input-field cf-validate" id="cf-email" type="text" name="email" placeholder="Your Email" formControlName="email" [ngClass]="{'is-invalid': displayMessage.email}">
+                        <input class="input-field cf-validate"  id="cf-email" type="text" name="email" placeholder="Your Email" formControlName="email" [ngClass]="{'is-invalid': displayMessage.email}">
                         <span class="invalid-feedback">
                           {{displayMessage?.email}}
                         </span>
@@ -63,7 +63,7 @@
 
                     <!--input field-->
                     <div class="input">
-                        <textarea class="input-field cf-validate" id="cf-message" name="message" rows="5" placeholder="Message"  formControlName="message" [ngClass]="{'is-invalid': displayMessage.comment}" ></textarea>
+                        <textarea class="input-field cf-validate"  id="cf-message" name="message" rows="5" placeholder="Message"  formControlName="message" [ngClass]="{'is-invalid': displayMessage.comment}" ></textarea>
                         <span class="invalid-feedback">
                             {{displayMessage?.message}}
                           </span>

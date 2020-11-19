@@ -19,7 +19,7 @@
     <!-- social links -->
     <div class="social-links">
       <a class="social-link" (click)="close()" [title]="social?.name" href="{{social?.url}}" target="_blank" *ngFor="let social of socialItems">
-        <i [class]="social?.icon"></i>
+        <i [class]="social?.icon" aria-hidden="true"></i>
       </a>
     </div>
     <!-- footer -->

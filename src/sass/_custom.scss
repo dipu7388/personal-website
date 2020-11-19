@@ -1,0 +1,14 @@
+
+@import "./variables";
+$body-bg: $bg-body;
+$body-color: #e1e1e1;
+$gray-900: #e1e1e1;
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+@import "node_modules/bootstrap/scss/grid";
+
+
+[class*="col-"] {
+  float: left;
+}

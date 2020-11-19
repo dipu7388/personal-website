@@ -11,12 +11,6 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit, AfterViewInit {
-  socialItems= socialItemsArray;
-  displayMessage: { [key: string]: string } = {};
-  private validationMessages: { [key: string]: { [key: string]: string } };
-  private genericValidator: GenericValidator;
-  dataForm: FormGroup;
-  emailRegex = new RegExp('^[a-zA-Z0-9._]+@[a-zA-Z0-9.]+[.]{1}[a-zA-Z0-9]+$');
   constructor(
     private fb: FormBuilder,
     private httpService: HttpService
@@ -39,16 +33,22 @@ export class ContactComponent implements OnInit, AfterViewInit {
     this.genericValidator = new GenericValidator(this.validationMessages);
 
     this.dataForm = this.fb.group({
-      name: ["", [Validators.required, Validators.minLength(3)]],
-      email: ["", [Validators.required, Validators.pattern(this.emailRegex)]],
-      message: ["", Validators.required]
+      name: [{value: '', disabled: true}, [Validators.required, Validators.minLength(3)],],
+      email: [{value: '', disabled: true}, [Validators.required, Validators.pattern(this.emailRegex)]],
+      message: [{value: '', disabled: true}, Validators.required]
     })
   }
+  socialItems= socialItemsArray;
+  displayMessage: { [key: string]: string } = {};
+  private validationMessages: { [key: string]: { [key: string]: string } };
+  private genericValidator: GenericValidator;
+  dataForm: FormGroup;
+  emailRegex = new RegExp('^[a-zA-Z0-9._]+@[a-zA-Z0-9.]+[.]{1}[a-zA-Z0-9]+$');
+
+  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
   ngOnInit() {
   }
-
-  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   ngAfterViewInit(): void {
 
     // Watch for the blur event from any input element on the form.

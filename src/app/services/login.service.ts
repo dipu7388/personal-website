@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
-import * as cryp from 'crypto-js';
 
 import { UserModel } from '../models/user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -30,8 +29,8 @@ export class LoginService {
     return new Promise((resolve, reject) => {
       this.getSalt().then(salt => {
 
-        let tempPassword = cryp.SHA256(user.password).toString(cryp.enc.Hex);
-        user.password = cryp.SHA256(tempPassword + salt).toString(cryp.enc.Hex);
+        let tempPassword =user.password // cryp.SHA256(user.password).toString(cryp.enc.Hex);
+        // user.password = cryp.SHA256(tempPassword + salt).toString(cryp.enc.Hex);
         this.httpServices.post('loginUser', new Map().set('hiddenSalt', salt), user).then((response) => {
           let user = new UserModel({
             emailId:response.data['emailId'],
@@ -68,7 +67,7 @@ export class LoginService {
 
 
   changePassword(newPassword: string): Promise<String> {
-    let tempPassword = cryp.SHA256(newPassword).toString(cryp.enc.Hex);
+    let tempPassword = newPassword //cryp.SHA256(newPassword).toString(cryp.enc.Hex);
     return new Promise<string>((resolve, reject) => {
       this.httpServices.get('changepassurl', new Map().set('password', tempPassword)).then((value) => {
         if (!value.error) {
