@@ -1,62 +1,73 @@
-
-<div class="page  section-resume">
+<div class="page section-resume">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="page-heading">
-          <h2 data-shadow="Resume">Resume</h2>
+          <h1 [attr.data-shadow]="resumeData?.title">
+            {{ resumeData?.title }}
+          </h1>
         </div>
       </div>
     </div>
 
     <div class="row mb-10">
-
       <!--Experience Column Start-->
       <div class="col-lg-6">
         <div class="sub-heading">
-          <h3>Work Experience</h3>
+          <h2>Work Experience</h2>
         </div>
 
         <!--experience timeline start-->
         <ul class="experience timeline">
-
           <!--timeline item-->
-          <li class="event" *ngFor="let exp of experience">
-            <h4>{{exp?.role}}</h4>
+          <li class="event" *ngFor="let exp of resumeData?.workExperience">
+            <h4>{{ exp?.position }}</h4>
             <h5>
-              <span class="date">{{exp?.duration}}</span>
-              <span class="company"><a href="{{exp?.link? exp?.link: '#'}}">&nbsp;&nbsp;{{exp?.company}}</a></span>
-              <span class="location">{{exp?.location}}</span>
+              <span class="date"
+                >{{ exp?.duration?.from | date: "MM/YYYY" }} -
+                <ng-container *ngIf="exp?.to">
+                  {{ exp?.duration?.to | date: "MM/YYYY" }}
+                </ng-container>
+                <ng-container *ngIf="!exp?.to"> Present </ng-container>
+              </span>
+              <span class="company">
+                <ng-container *ngIf="exp?.companyUrl">
+                  <a [href]="exp?.companyUrl"
+                    >&nbsp;&nbsp;{{ exp?.companyName }}</a
+                  >
+                </ng-container>
+                <ng-container *ngIf="!exp?.companyUrl">
+                  <a>&nbsp;&nbsp;{{ exp?.companyName }}</a>
+                </ng-container>
+              </span>
+              <span class="location">{{ exp?.location }}</span>
             </h5>
             <p></p>
           </li>
         </ul>
         <!--experience timeline end-->
-
       </div>
       <!--Experience Column End-->
- <!-- Languages start -->
- <div class="col-lg-6">
-    <div class="sub-heading">
-      <h3>Languages</h3>
-    </div>
+      <!-- Languages start -->
+      <div class="col-lg-6">
+        <div class="sub-heading">
+          <h3>Languages</h3>
+        </div>
 
-    <!--language timeline start-->
-    <ul class="language timeline">
-      <!--timeline item-->
+        <!--language timeline start-->
+        <ul class="language timeline">
+          <!--timeline item-->
 
-      <li class="event" *ngFor="let lang of language">
-        <h4>{{lang?.name}}</h4>
-        <h5>
-          <span class="date">{{lang?.proficiency}}</span>
-        </h5>
-      </li>
-
-    </ul>
-    <!--education timeline end-->
-
-  </div>
-  <!-- languages ends -->
+          <li class="event" *ngFor="let lang of resumeData?.languages">
+            <h4>{{ lang?.name }}</h4>
+            <h5>
+              <span class="date">{{ lang?.skillLavel }}</span>
+            </h5>
+          </li>
+        </ul>
+        <!--education timeline end-->
+      </div>
+      <!-- languages ends -->
       <!--Education Column Start-->
       <div class="col-lg-6">
         <div class="sub-heading">
@@ -67,59 +78,83 @@
         <ul class="education timeline">
           <!--timeline item-->
 
-          <li class="event" *ngFor="let edu of education">
-            <h4>{{edu?.course}}</h4>
+          <li class="event" *ngFor="let edu of resumeData?.education">
+            <h4>{{ edu?.course }}</h4>
             <h5>
-              <span class="date">{{edu?.duration}}</span>
-              <span class="company"><a href="{{edu?.link? edu?.link: '#'}}">{{edu?.institute}}</a></span>
-              <span class="location">{{edu?.location}}</span>
+              <span class="date"
+                >{{ edu?.duration?.from | date: "MM/YYYY" }} -
+                <ng-container *ngIf="edu?.to">
+                  {{ edu?.duration?.to | date: "MM/YYYY" }}
+                </ng-container>
+                <ng-container *ngIf="!edu?.to"> Present </ng-container>
+              </span>
+              <span class="company">
+                <ng-container *ngIf="edu?.universityLocation?.universityUrl">
+                  <a [href]="edu?.universityLocation?.universityUrl">{{
+                    edu?.universityName
+                  }}</a>
+                </ng-container>
+                <ng-container *ngIf="!edu?.universityLocation?.universityUrl">
+                  <a>{{ edu?.universityName }}</a>
+                </ng-container>
+              </span>
+              <span class="location"
+                >{{
+                  edu?.universityLocation?.address +
+                    ", " +
+                    edu?.universityLocation?.state
+                }}
+                - {{ edu?.universityLocation?.country }}</span
+              >
             </h5>
             <p *ngFor="let p of edu?.projects">
-              <span>{{p}}</span>
+              <span>{{ p }}</span>
             </p>
           </li>
-
         </ul>
         <!--education timeline end-->
-
       </div>
       <!--Education Column End-->
 
       <!-- Projects start -->
       <div class="col-lg-6">
         <div class="sub-heading">
-          <h3>Projects</h3>
+          <h2>Projects</h2>
         </div>
 
         <!--education timeline start-->
         <ul class="projects timeline">
           <!--timeline item-->
 
-          <li class="event" *ngFor="let proj of projects">
-            <h4>{{proj?.name}}</h4>
+          <li class="event" *ngFor="let proj of resumeData?.projects">
+            <h4>{{ proj?.title }}</h4>
             <h5>
-              <span class="date">{{proj?.duration}}</span>
-              <span class="company"><a href="{{proj?.link? proj?.link: '#'}}">{{proj?.name}}</a></span>
+              <span class="date"
+                >{{ proj?.duration?.from | date: "MM/YYYY" }} -
+                <ng-container *ngIf="proj?.to">
+                  {{ proj?.duration?.to | date: "MM/YYYY" }}
+                </ng-container>
+                <ng-container *ngIf="!proj?.to"> Present </ng-container>
+              </span>
+              <span class="company">
+                <ng-container *ngIf="proj?.projectUrl">
+                  <a [href]="proj?.projectUrl">{{ proj?.name }}</a>
+                </ng-container>
+                <ng-container *ngIf="!proj?.projectUrl">
+                  <a>{{ proj?.name }}</a>
+                </ng-container>
+              </span>
             </h5>
-            <p *ngFor="let p of proj?.features">
-              <span>{{p}}</span>
-            </p>
+            <div [innerHtml]="proj?.description"></div>
           </li>
-
         </ul>
         <!--education timeline end-->
-
       </div>
       <!-- Projects ends -->
-
-
     </div>
 
     <!--Skills Row Start-->
     <div class="row">
-
-
-
       <!-- Coding Skills Column Start -->
       <div class="col-lg-6 skills">
         <div class="sub-heading">
@@ -127,38 +162,39 @@
         </div>
 
         <!--skill item-->
-        <div class="skill-item"  *ngFor="let s of feSkills">
-          <h4 class="progress-title">{{s?.name}}</h4>
+        <div class="skill-item" *ngFor="let s of resumeData?.feSkills">
+          <h4 class="progress-title">{{ s?.skillName }}</h4>
           <div class="progress">
-            <div class="progress-bar"  [style.width]="s?.confidence">
-              <div class="progress-value">{{s?.confidence}}</div>
+            <div
+              class="progress-bar"
+              [style.width]="s?.skillconfidenceValue + '%'"
+            >
+              <div class="progress-value">{{ s?.skillconfidenceValue }}</div>
             </div>
           </div>
         </div>
-
       </div>
 
       <div class="col-lg-6 skills">
-          <div class="sub-heading">
-            <h3 data-shadow="Coding Skills">Back End Skills</h3>
-          </div>
+        <div class="sub-heading">
+          <h3 data-shadow="Coding Skills">Back End Skills</h3>
+        </div>
 
-          <!--skill item-->
-          <div class="skill-item"  *ngFor="let s of beSkills">
-            <h4 class="progress-title">{{s?.name}}</h4>
-            <div class="progress">
-              <div class="progress-bar"  [style.width]="s?.confidence">
-                <div class="progress-value">{{s?.confidence}}</div>
-              </div>
+        <!--skill item-->
+        <div class="skill-item" *ngFor="let s of resumeData?.beSkills">
+          <h4 class="progress-title">{{ s?.skillName }}</h4>
+          <div class="progress">
+            <div
+              class="progress-bar"
+              [style.width]="s?.skillconfidenceValue + '%'"
+            >
+              <div class="progress-value">{{ s?.skillconfidenceValue }}</div>
             </div>
           </div>
-
         </div>
+      </div>
       <!-- Coding Skills Column End -->
-
     </div>
     <!--Skills Row End-->
-
   </div>
-
 </div>

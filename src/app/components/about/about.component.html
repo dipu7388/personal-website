@@ -1,104 +1,109 @@
 <div class="page section-about">
-    <div class="container">
-
-        <div class="page-heading">
-            <h2 data-shadow="About">About</h2>
-        </div>
-
-        <!--About Info Section Start-->
-        <div class="row about-info mb-60">
-            <div class="col-lg-5">
-
-                <!-- about image -->
-                <div class="about-img">
-                    <img src="assets/img/profile-pic.png" alt="">
-                </div>
-
-            </div>
-
-            <div class="col-lg-7">
-                <h3 class="mb-20">Software Engineer &amp; Web Developer</h3>
-                <p>Hello! I’m <strong>Dheerendra Kumar Singh</strong>. FrontEnd Developer with over 2.5+ years of experience. Experienced with all stages of the development cycle for dynamic web projects. Having an in-depth knowledge including advanced <strong>HTML5, CSS3, JavaScript, Typescript, PWA, Angular</strong>. I'm enthusiastic about front-end performance and accessibility. Currently  I'm working with Libsys ltd, looking for a job change.
-
-                </p>
-
-                <div class="row mb-20">
-                    <div class="col-sm-6">
-                        <!-- about list -->
-                        <ul class="about-list">
-                            <li> <span class="title">Name</span> <span class="value">Dheerendra Kumar Singh</span> </li>
-                            <li> <span class="title">Age</span> <span class="value">26 Years</span> </li>
-                            <li> <span class="title">Email</span>
-                              <a href="mailto:dheerendra.mcs16.du@gmail.com" class="value">dheerendra.mcs16.du@gmail.com</a>
-                              </li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6">
-                        <!-- about list -->
-                        <ul class="about-list">
-                            <li> <span class="title">Phone</span> <span class="value">+91 9560 7639 29</span> </li>
-                            <li> <span class="title">Address</span> <span class="value">Gurugram, Haryana, India</span> </li>
-                            <li> <span class="title">Freelance</span> <span class="value">Available</span> </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- resume button -->
-                        <div class="resume-button">
-                            <a class="main-btn" target="_blank" href="assets/Dheerendra's_Resume.pdf">Download Resume</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!--About Info Section End-->
-
-        <!--Services Section Start-->
-        <div class="row services mb-20">
-            <div class="col-md-12">
-                <div class="sub-heading">
-                    <h3>Services</h3>
-                </div>
-            </div>
-
-            <!--service item-->
-            <div class="col-lg-3 col-sm-6">
-                <div class="service-item">
-                    <i class="fa fa-desktop"></i>
-                    <h4 class="title">Web Development</h4>
-                    <p>I am able to develop web apps and web application with enhanced user experience</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="service-item">
-                    <i class="fa fa-amazon"></i>
-                    <h4 class="title">Alexa Skill Development</h4>
-                    <p>I am happy to help to to build alexa skills</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-sm-6">
-                <div class="service-item">
-                    <i class="fa fa-comments-o"></i>
-                    <h4 class="title">Chat bot Development</h4>
-                    <p>I am able to develop chat bot for your requirements</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-sm-6">
-                <div class="service-item">
-                    <i class="fa fa-globe"></i>
-                    <h4 class="title">Websites Development</h4>
-                    <p>Dynammic web site development</p>
-                </div>
-            </div>
-
-        </div>
-        <!--Services Section End-->
-
+  <div class="container">
+    <div class="page-heading">
+      <h1 [attr.data-shadow]="aboutData?.title">{{ aboutData?.title }}</h1>
     </div>
 
+    <!--About Info Section Start-->
+    <div class="row about-info mb-60">
+      <div class="col-lg-5">
+        <!-- about image -->
+        <div class="about-img">
+          <img
+            [src]="aboutData?.profilePic"
+            [alt]="aboutData?.name + ' Profile Picture'"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <h3 class="mb-20">{{ aboutData?.position }}</h3>
+        <p [innerHtml]="aboutData?.desc"></p>
+
+        <div class="row mb-20">
+          <div class="col-sm-6">
+            <!-- about list -->
+            <ul class="about-list">
+              <li>
+                <span class="title">Name</span>
+                <span class="value">{{ aboutData?.name }}</span>
+              </li>
+              <li>
+                <span class="title">Age</span>
+                <span class="value">{{ aboutData?.age }}</span>
+              </li>
+              <li>
+                <span class="title">Email</span>
+                <a href="mailto:{{ aboutData?.email }}" class="value">{{
+                  aboutData?.email
+                }}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-6">
+            <!-- about list -->
+            <ul class="about-list">
+              <li>
+                <span class="title">Phone</span>
+                <span class="value"
+                  ><a href="tel:+{{ aboutData?.mobileNumber }}">{{
+                    aboutData?.mobileNumber
+                  }}</a></span
+                >
+              </li>
+              <li>
+                <span class="title">Address</span>
+                <span class="value"
+                  >{{ aboutData?.address[0]?.city }},{{
+                    aboutData?.address[0]?.state
+                  }}-{{ aboutData?.address[0]?.pincode }},{{
+                    aboutData?.address[0]?.country
+                  }}</span
+                >
+              </li>
+              <li>
+                <span class="title">Freelance</span>
+                <span class="value">{{ aboutData?.freelance }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <!-- resume button -->
+            <div class="resume-button">
+              <a class="main-btn" target="_blank" [href]="aboutData?.resumelink"
+                >Download Resume
+                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--About Info Section End-->
+
+    <!--Services Section Start-->
+    <div class="row services mb-20">
+      <div class="col-md-12">
+        <div class="sub-heading">
+          <h3>Services</h3>
+        </div>
+      </div>
+
+      <!--service item-->
+      <div
+        class="col-lg-3 col-sm-6"
+        *ngFor="let service of aboutData?.services"
+      >
+        <div class="service-item">
+          <i class="fa {{ service.icon }}"></i>
+          <h4 class="title">{{ service.name }}</h4>
+          <p [innerHtml]="service?.desc"></p>
+        </div>
+      </div>
+    </div>
+    <!--Services Section End-->
+  </div>
 </div>
