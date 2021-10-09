@@ -218,6 +218,12 @@ export class ResumeComponent implements OnInit {
       .subscribe((resume: Resume) => {
         console.log(resume);
         this.resumeData = resume;
+        this.resumeData.feSkills = resume.skills.filter((e) =>
+          e.tag.includes('fe')
+        );
+        this.resumeData.beSkills = resume.skills.filter((e) =>
+          e.tag.includes('be')
+        );
       });
   }
 }

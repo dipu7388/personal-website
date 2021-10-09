@@ -1,7 +1,7 @@
 <div class="page section-about">
   <div class="container">
     <div class="page-heading">
-      <h2 [attr.data-shadow]="aboutData?.title">{{ aboutData?.title }}</h2>
+      <h1 [attr.data-shadow]="aboutData?.title">{{ aboutData?.title }}</h1>
     </div>
 
     <!--About Info Section Start-->
@@ -9,7 +9,10 @@
       <div class="col-lg-5">
         <!-- about image -->
         <div class="about-img">
-          <img [src]="aboutData?.profilePic" alt="" />
+          <img
+            [src]="aboutData?.profilePic"
+            [alt]="aboutData?.name + ' Profile Picture'"
+          />
         </div>
       </div>
 
@@ -71,8 +74,9 @@
             <!-- resume button -->
             <div class="resume-button">
               <a class="main-btn" target="_blank" [href]="aboutData?.resumelink"
-                >Download Resume</a
-              >
+                >Download Resume
+                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
         </div>

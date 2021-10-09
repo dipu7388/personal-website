@@ -10,6 +10,8 @@ export interface Resume {
   projects: Project[];
   skills: Skill[];
   interestes: string[];
+  feSkills: Skill[];
+  beSkills: Skill[];
 }
 
 export interface Language {
@@ -40,12 +42,12 @@ export interface Education {
     address: string;
     state: string;
     country: string;
+    universityUrl: string;
   };
   iscurrentUniversity: boolean;
   description: string;
   projects: Project[];
   duration: Duration;
-  universityUrl: string;
 }
 export interface Project {
   projectName: string;
