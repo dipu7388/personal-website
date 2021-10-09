@@ -4,10 +4,9 @@
 
 export const environment = {
   production: false,
-  serviceUrl: 'http://192.200.1.211:8080',
+  serviceUrl: 'http://localhost:3500',
   logLevel: 1,
 };
-
 
 /*
  * For easier debugging in development mode, you can import the following file
