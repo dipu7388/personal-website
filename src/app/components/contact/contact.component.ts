@@ -5,15 +5,20 @@ import { GenericValidator } from 'src/app/common/validations/generic-validator';
 import { Observable, fromEvent, merge } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { HttpService } from 'src/app/services/http.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Contact } from 'src/app/common/contact.interface';
 @Component({
   selector: 'dk-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit, AfterViewInit {
+  contactData:Contact
   constructor(
     private fb: FormBuilder,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private http: HttpClient
 
   ) {
     this.validationMessages = {
@@ -48,6 +53,14 @@ export class ContactComponent implements OnInit, AfterViewInit {
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
   ngOnInit() {
+    this.http
+    .get(`${environment.serviceUrl}/api/contact`, {
+      params: new HttpParams().set('email', 'dheerendra.mcs16.du@gmail.com'),
+    })
+    .subscribe((contact: Contact) => {
+      this.contactData=contact;
+      console.log(contact);
+    });
   }
   ngAfterViewInit(): void {
 

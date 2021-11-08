@@ -3,7 +3,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-heading">
-                    <h2 data-shadow="Contact">Contact</h2>
+                  <h1 [attr.data-shadow]="contactData?.title">
+                    {{ contactData?.title }}
+                  </h1>
                 </div>
             </div>
         </div>
@@ -12,20 +14,20 @@
             <!--Contact Information Column Start-->
             <div class="col-lg-6 contact-detail">
                 <div class="sub-heading mb-20">
-                    <h3>Get In Touch</h3>
+                    <h3>{{contactData?.subHeading}}</h3>
                 </div>
-                <p>For more information feel free to contact me by filing  the form  or you can call, and ping me on social media.</p>
+                <p>{{contactData?.desc}}</p>
                 <ul class="contact-info">
                     <li class="phone">
                         <span class="title">Phone</span>
-                        <a href="tel:+919560763929" class="value">(+91) 9560763929</a>
+                        <a href="tel:{{contactData?.mobileNumber}}" class="value">{{contactData?.mobileNumber}}</a>
                     </li>
                     <li class="address">
-                        <span class="title">Address</span><span class="value">Gurugram-122001 Haryana, India</span>
+                        <span class="title">Address</span><span class="value">{{contactData?.address}}</span>
                     </li>
                     <li class="email">
                         <span class="title">E-mail</span>
-                        <a href="mailto:dheerendra.mcs16.du@gmail.com" class="value">dheerendra.mcs16.du@gmail.com</a>
+                        <a href="mailto:{{contactData?.email}}" class="value">{{contactData?.email}}</a>
                     </li>
                 </ul>
 
@@ -33,7 +35,7 @@
                 <div class="social-media">
                     <h4>Follow</h4>
                     <div class="social-media-icons">
-                      <a class="social-link" [title]="social?.name" href="{{social?.url}}" target="_blank" *ngFor="let social of socialItems">
+                      <a class="social-link" [title]="social?.name" href="{{social?.url}}" target="_blank" *ngFor="let social of contactData?.socialLinks">
                           <i [class]="social?.icon"></i>
                         </a>
                     </div>

@@ -1,7 +1,7 @@
 <header>
 
   <!-- logo -->
-  <a class="logo" [routerLink]="['/']" (click)="close()"  ><span>DK</span></a>
+  <a class="logo" [routerLink]="['/']" (click)="close()"  ><span>{{contactData?.logoText}}</span></a>
 
   <!-- navigation button -->
   <div class="menu-button " #menubutton (click)="toggle()"  [ngClass]="{'active':( menuFlag$| async)}">
@@ -18,12 +18,12 @@
 
     <!-- social links -->
     <div class="social-links">
-      <a class="social-link" (click)="close()" [title]="social?.name" href="{{social?.url}}" target="_blank" *ngFor="let social of socialItems">
+      <a class="social-link" (click)="close()" [title]="social?.name" href="{{social?.url}}" target="_blank" *ngFor="let social of contactData?.socialLinks">
         <i [class]="social?.icon" aria-hidden="true"></i>
       </a>
     </div>
     <!-- footer -->
-    <dk-footer></dk-footer>
+    <dk-footer [copyrightText]="contactData?.copyright"></dk-footer>
 
   </nav>
 

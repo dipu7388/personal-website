@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AppStateService } from 'src/app/services/app-state.service';
 import { Observable } from 'rxjs';
+import { Contact } from 'src/app/common/contact.interface';
 
 export let socialItemsArray:Array <{name: string, url : string,icon : string}>=[
   {name:'Fork me on Github', icon: 'fa fa-github', url:'https://github.com/dipu7388'},
@@ -16,6 +17,7 @@ export let socialItemsArray:Array <{name: string, url : string,icon : string}>=[
 })
 export class HeaderComponent implements OnInit {
   @ViewChild('menubutton', {static: true}) navside
+  @Input() contactData:Contact
   menu:Array <{name, url,icon}>=[
     {name: 'About', url: '/About', icon: 'fas  fa-home'},
     {name: 'Resume', url: '/Resume', icon: 'fas fa-user'},

@@ -902,9 +902,11 @@ a:hover {
     opacity: 0; } }
 
 .page-heading {
+  position: relative;
   text-align: center;
   margin-top: 60px;
   margin-bottom: 50px; }
+
   .page-heading h2 {
     position: relative;
     font-size: 32px;
@@ -915,7 +917,8 @@ a:hover {
     font-weight: 700;
     line-height: 100%;
     text-transform: uppercase; }
-    .page-heading h2:before {
+
+    .page-heading h1:before, .page-heading h2:before {
       position: absolute;
       content: attr(data-shadow);
       top: 50%;
