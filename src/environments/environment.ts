@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  serviceUrl: 'http://localhost:3500',
+  serviceUrl: 'https://dheerendra.azurewebsites.net/api/getProfileDetails',
+  email: 'dheerendra.mcs16.du@gmail.com',
   logLevel: 1,
 };
 

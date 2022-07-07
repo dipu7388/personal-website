@@ -1,6 +1,17 @@
-import { Component, OnInit, ViewChildren, ElementRef, AfterViewInit } from '@angular/core';
-import { socialItemsArray } from "src/app/components/header/header.component";
-import { FormBuilder, FormGroup, Validators, FormControlName } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  ViewChildren,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
+import { socialItemsArray } from 'src/app/components/header/header.component';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControlName,
+} from '@angular/forms';
 import { GenericValidator } from 'src/app/common/validations/generic-validator';
 import { Observable, fromEvent, merge } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -11,99 +22,111 @@ import { Contact } from 'src/app/common/contact.interface';
 @Component({
   selector: 'dk-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent implements OnInit, AfterViewInit {
-  contactData:Contact
+  contactData: Contact;
   constructor(
     private fb: FormBuilder,
     private httpService: HttpService,
     private http: HttpClient
-
   ) {
     this.validationMessages = {
-      'name': {
-        'required': 'Name is required.',
-        'minlength': 'Name must be at least three characters.',
-        'maxlength': 'Name cannot exceed 50 characters.'
+      name: {
+        required: 'Name is required.',
+        minlength: 'Name must be at least three characters.',
+        maxlength: 'Name cannot exceed 50 characters.',
       },
-      'email': {
-        'required': 'Email ID is required.',
-        'pattern': 'Email id must be Valid'
+      email: {
+        required: 'Email ID is required.',
+        pattern: 'Email id must be Valid',
       },
-      'message': {
-        'required': 'message is required.'
-      }
+      message: {
+        required: 'message is required.',
+      },
     };
     this.genericValidator = new GenericValidator(this.validationMessages);
 
     this.dataForm = this.fb.group({
-      name: [{value: '', disabled: true}, [Validators.required, Validators.minLength(3)],],
-      email: [{value: '', disabled: true}, [Validators.required, Validators.pattern(this.emailRegex)]],
-      message: [{value: '', disabled: true}, Validators.required]
-    })
+      name: [
+        { value: '', disabled: true },
+        [Validators.required, Validators.minLength(3)],
+      ],
+      email: [
+        { value: '', disabled: true },
+        [Validators.required, Validators.pattern(this.emailRegex)],
+      ],
+      message: [{ value: '', disabled: true }, Validators.required],
+    });
   }
-  socialItems= socialItemsArray;
+  socialItems = socialItemsArray;
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
   dataForm: FormGroup;
   emailRegex = new RegExp('^[a-zA-Z0-9._]+@[a-zA-Z0-9.]+[.]{1}[a-zA-Z0-9]+$');
 
-  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
+  @ViewChildren(FormControlName, { read: ElementRef })
+  formInputElements: ElementRef[];
 
   ngOnInit() {
     this.http
-    .get(`${environment.serviceUrl}/api/contact`, {
-      params: new HttpParams().set('email', 'dheerendra.mcs16.du@gmail.com'),
-    })
-    .subscribe((contact: Contact) => {
-      this.contactData=contact;
-      console.log(contact);
-    });
+      .get(environment.serviceUrl, {
+        params: new HttpParams()
+          .set('email', environment.email)
+          .set('controller', 'contact'),
+      })
+      .subscribe((contact: Contact) => {
+        this.contactData = contact;
+        console.log(contact);
+      });
   }
   ngAfterViewInit(): void {
-
     // Watch for the blur event from any input element on the form.
-    const controlBlurs: Observable<any>[] = this.formInputElements
-      .map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur'));
+    const controlBlurs: Observable<any>[] = this.formInputElements.map(
+      (formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur')
+    );
 
     // Merge the blur event observable with the valueChanges observable
-    merge(this.dataForm.valueChanges, ...controlBlurs).pipe(
-      debounceTime(800)
-    ).subscribe(() => {
-      this.displayMessage = this.genericValidator.processMessages(this.dataForm);
-    });
-
+    merge(this.dataForm.valueChanges, ...controlBlurs)
+      .pipe(debounceTime(800))
+      .subscribe(() => {
+        this.displayMessage = this.genericValidator.processMessages(
+          this.dataForm
+        );
+      });
   }
 
   submitForm(): void {
     if (this.dataForm.valid) {
-        let adminMailOptions = {
-          from: 'dharmadevi60@gmail.com',
-          to: 'aaaa7388@gmail.com',
-          subject: this.dataForm.value.name + 'Wants to connect you' ,
-          text: this.dataForm.value.message+ "   reply   "+ this.dataForm.value.email
-        };
-        let userMailOptions = {
-          from: 'dharmadevi60@gmail.com',
-          to:  this.dataForm.value.email,
-          subject: 'Thanks for pinggig me' ,
-          text: "I will get in touch shortly. or call me +91 99560763929"
-        };
-        this.dataForm.disable();
-        let url='https://dheerendra-alexa-joke-skill.herokuapp.com/api/sendMail';
-        let url2='https://localhost:3000/api/sendMail';
-        this.httpService.post(url, new Map(), adminMailOptions).then(data=>{
-          this.dataForm.enable();
-          this.dataForm.reset();
-
-        })
-        this.httpService.post(url, new Map(), userMailOptions).then(data=>{
-          this.dataForm.enable();
-          this.dataForm.reset();
-        })
-  }
+      let adminMailOptions = {
+        from: 'dharmadevi60@gmail.com',
+        to: 'aaaa7388@gmail.com',
+        subject: this.dataForm.value.name + 'Wants to connect you',
+        text:
+          this.dataForm.value.message +
+          '   reply   ' +
+          this.dataForm.value.email,
+      };
+      let userMailOptions = {
+        from: 'dharmadevi60@gmail.com',
+        to: this.dataForm.value.email,
+        subject: 'Thanks for pinggig me',
+        text: 'I will get in touch shortly. or call me +91 99560763929',
+      };
+      this.dataForm.disable();
+      let url =
+        'https://dheerendra-alexa-joke-skill.herokuapp.com/api/sendMail';
+      let url2 = 'https://localhost:3000/api/sendMail';
+      this.httpService.post(url, new Map(), adminMailOptions).then((data) => {
+        this.dataForm.enable();
+        this.dataForm.reset();
+      });
+      this.httpService.post(url, new Map(), userMailOptions).then((data) => {
+        this.dataForm.enable();
+        this.dataForm.reset();
+      });
+    }
   }
 
   keyPressOnlyNumbers(event: any) {
@@ -113,5 +136,4 @@ export class ContactComponent implements OnInit, AfterViewInit {
       event.preventDefault();
     }
   }
-
 }

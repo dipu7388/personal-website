@@ -14,8 +14,10 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.http
-      .get(`${environment.serviceUrl}/api/about`, {
-        params: new HttpParams().set('email', 'dheerendra.mcs16.du@gmail.com'),
+      .get(environment.serviceUrl, {
+        params: new HttpParams()
+          .set('email', environment.email)
+          .set('controller', 'about'),
       })
       .subscribe((about: About) => {
         console.log(about);

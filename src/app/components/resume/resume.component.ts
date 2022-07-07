@@ -14,8 +14,10 @@ export class ResumeComponent implements OnInit {
 
   ngOnInit() {
     this.http
-      .get(`${environment.serviceUrl}/api/resume`, {
-        params: new HttpParams().set('email', 'dheerendra.mcs16.du@gmail.com'),
+      .get(environment.serviceUrl, {
+        params: new HttpParams()
+          .set('email', environment.email)
+          .set('controller', 'resume'),
       })
       .subscribe((resume: Resume) => {
         console.log(resume);
