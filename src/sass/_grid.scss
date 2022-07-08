@@ -33,11 +33,11 @@ $breakpoint-medium: "only screen and (min-width: 60em)";
     @extend %clearfix;
 }
 
-img {
-    width: auto;
-    max-width: 100%;
-    height: auto;
-}
+// img {
+//     width: auto;
+//     max-width: 100%;
+//     height: auto;
+// }
 
 [class*='column-'] {
     float: left;

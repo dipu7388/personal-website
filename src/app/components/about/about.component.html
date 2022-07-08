@@ -1,7 +1,14 @@
 <div class="page section-about">
   <div class="container">
     <div class="page-heading">
-      <h1 [attr.data-shadow]="aboutData?.title">{{ aboutData?.title }}</h1>
+      <h1 [attr.data-shadow]="aboutData?.title" *ngIf="!loading">
+        {{ aboutData?.title }}
+      </h1>
+      <app-shimmer
+        *ngIf="loading"
+        height="4rem"
+        [centerLoader]="true"
+      ></app-shimmer>
     </div>
 
     <!--About Info Section Start-->
@@ -10,13 +17,25 @@
         <!-- about image -->
         <div class="about-img">
           <img
+            class="loading"
+            *ngIf="!loading"
             [src]="aboutData?.profilePic"
             [alt]="aboutData?.name + ' Profile Picture'"
+            height="450px"
+            width="450px"
+            (load)="imgLoaded($event)"
+            (error)="imgLoaded($event)"
           />
+          <app-shimmer
+            *ngIf="loading"
+            width="450px"
+            height="450px"
+            [centerLoader]="true"
+          ></app-shimmer>
         </div>
       </div>
 
-      <div class="col-lg-7">
+      <div class="col-lg-7" *ngIf="!loading">
         <h3 class="mb-20">{{ aboutData?.position }}</h3>
         <p [innerHtml]="aboutData?.desc"></p>
 
@@ -81,6 +100,12 @@
           </div>
         </div>
       </div>
+      <app-shimmer
+        class="col-lg-7"
+        *ngIf="loading"
+        height="450px"
+        width="100%"
+      ></app-shimmer>
     </div>
     <!--About Info Section End-->
 
@@ -93,16 +118,19 @@
       </div>
 
       <!--service item-->
-      <div
-        class="col-lg-3 col-sm-6"
-        *ngFor="let service of aboutData?.services"
-      >
-        <div class="service-item">
-          <i class="fa {{ service.icon }}"></i>
-          <h4 class="title">{{ service.name }}</h4>
-          <p [innerHtml]="service?.desc"></p>
+      <ng-container *ngIf="!loading">
+        <div
+          class="col-lg-3 col-sm-6"
+          *ngFor="let service of aboutData?.services"
+        >
+          <div class="service-item">
+            <i class="fa {{ service.icon }}"></i>
+            <h4 class="title">{{ service.name }}</h4>
+            <p [innerHtml]="service?.desc"></p>
+          </div>
         </div>
-      </div>
+      </ng-container>
+      <app-shimmer *ngIf="loading" height="450px" width="100%"></app-shimmer>
     </div>
     <!--Services Section End-->
   </div>

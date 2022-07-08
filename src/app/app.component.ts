@@ -26,7 +26,6 @@ export class AppComponent {
       })
       .subscribe((contact: Contact) => {
         this.contactData = contact;
-        console.log(contact);
       });
   }
 }

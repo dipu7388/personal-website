@@ -1,97 +1,167 @@
 <div class="page section-contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-heading">
-                  <h1 [attr.data-shadow]="contactData?.title">
-                    {{ contactData?.title }}
-                  </h1>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-heading">
+          <h1 *ngIf="!loading" [attr.data-shadow]="contactData?.title">
+            {{ contactData?.title }}
+          </h1>
+          <app-shimmer
+            *ngIf="loading"
+            height="4rem"
+            [centerLoader]="true"
+          ></app-shimmer>
         </div>
-
-        <div class="row">
-            <!--Contact Information Column Start-->
-            <div class="col-lg-6 contact-detail">
-                <div class="sub-heading mb-20">
-                    <h3>{{contactData?.subHeading}}</h3>
-                </div>
-                <p>{{contactData?.desc}}</p>
-                <ul class="contact-info">
-                    <li class="phone">
-                        <span class="title">Phone</span>
-                        <a href="tel:{{contactData?.mobileNumber}}" class="value">{{contactData?.mobileNumber}}</a>
-                    </li>
-                    <li class="address">
-                        <span class="title">Address</span><span class="value">{{contactData?.address}}</span>
-                    </li>
-                    <li class="email">
-                        <span class="title">E-mail</span>
-                        <a href="mailto:{{contactData?.email}}" class="value">{{contactData?.email}}</a>
-                    </li>
-                </ul>
-
-                <!--social media icons-->
-                <div class="social-media">
-                    <h4>Follow</h4>
-                    <div class="social-media-icons">
-                      <a class="social-link" [title]="social?.name" href="{{social?.url}}" target="_blank" *ngFor="let social of contactData?.socialLinks">
-                          <i [class]="social?.icon"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!--Contact Information Column End-->
-
-
-            <!--Contact Form Column Start-->
-            <div class="col-lg-6">
-                <form id="contact-form"  [formGroup]="dataForm"  (ngSubmit)="submitForm()" novalidate>
-                    <!--input field-->
-                    <div class="input">
-                        <input class="input-field cf-validate"   formControlName="name"  [ngClass]="{'is-invalid': displayMessage?.name}" id="cf-name" type="text" name="name" placeholder="Your Name">
-                        <span class="invalid-feedback">
-                            {{displayMessage?.name}}
-                          </span>
-                      </div>
-
-                    <!--input field-->
-                    <div class="input">
-                        <input class="input-field cf-validate"  id="cf-email" type="text" name="email" placeholder="Your Email" formControlName="email" [ngClass]="{'is-invalid': displayMessage.email}">
-                        <span class="invalid-feedback">
-                          {{displayMessage?.email}}
-                        </span>
-                    </div>
-
-                    <!--input field-->
-                    <div class="input">
-                        <textarea class="input-field cf-validate"  id="cf-message" name="message" rows="5" placeholder="Message"  formControlName="message" [ngClass]="{'is-invalid': displayMessage.comment}" ></textarea>
-                        <span class="invalid-feedback">
-                            {{displayMessage?.message}}
-                          </span>
-                      </div>
-
-                    <div class="alert-container col-md-12"></div>
-
-                    <!--submit button-->
-                    <div class="submit-button text-center">
-                        <button class="main-btn" id="cf-submit"  [disabled]="!dataForm.valid || true" >Send Message</button>
-                    </div>
-
-                </form>
-            </div>
-            <!--Contact Form Column End-->
-
-        </div>
-
-        <!--Google Map Row Start-->
-        <div class="row">
-            <div class="col-md-12 google-map">
-
-            </div>
-        </div>
-        <!--Google Map Row End-->
-
+      </div>
     </div>
 
+    <div class="row">
+      <!--Contact Information Column Start-->
+      <div class="col-lg-6 contact-detail">
+        <div class="sub-heading mb-20">
+          <h3 *ngIf="!loading">{{ contactData?.subHeading }}</h3>
+          <app-shimmer
+            class="h3"
+            *ngIf="loading"
+            height="6rem"
+            [centerLoader]="true"
+          ></app-shimmer>
+        </div>
+        <p *ngIf="!loading">{{ contactData?.desc }}</p>
+        <app-shimmer
+          class="mt-2"
+          *ngIf="loading"
+          height="1rem"
+          [centerLoader]="true"
+        ></app-shimmer>
+        <ul class="contact-info" *ngIf="!loading">
+          <li class="phone">
+            <span class="title">Phone</span>
+            <a href="tel:{{ contactData?.mobileNumber }}" class="value">{{
+              contactData?.mobileNumber
+            }}</a>
+          </li>
+          <li class="address">
+            <span class="title">Address</span
+            ><span class="value">{{ contactData?.address }}</span>
+          </li>
+          <li class="email">
+            <span class="title">E-mail</span>
+            <a href="mailto:{{ contactData?.email }}" class="value">{{
+              contactData?.email
+            }}</a>
+          </li>
+        </ul>
+        <app-shimmer
+          class="contact-info"
+          *ngIf="loading"
+          height="8rem"
+          [centerLoader]="true"
+        ></app-shimmer>
+
+        <!--social media icons-->
+        <div class="social-media">
+          <h4>Follow</h4>
+          <div class="social-media-icons" *ngIf="!loading">
+            <a
+              class="social-link"
+              [title]="social?.name"
+              href="{{ social?.url }}"
+              target="_blank"
+              *ngFor="let social of contactData?.socialLinks"
+            >
+              <i [class]="social?.icon"></i>
+            </a>
+          </div>
+          <app-shimmer
+            class="social-media-icons"
+            *ngIf="loading"
+            height="2rem"
+            [centerLoader]="true"
+          ></app-shimmer>
+        </div>
+      </div>
+
+      <!--Contact Information Column End-->
+
+      <!--Contact Form Column Start-->
+      <div class="col-lg-6">
+        <form
+          *ngIf="!loading"
+          id="contact-form"
+          [formGroup]="dataForm"
+          (ngSubmit)="submitForm()"
+          novalidate
+        >
+          <!--input field-->
+          <div class="input">
+            <input
+              class="input-field cf-validate"
+              formControlName="name"
+              [ngClass]="{ 'is-invalid': displayMessage?.name }"
+              id="cf-name"
+              type="text"
+              name="name"
+              placeholder="Your Name"
+            />
+            <span class="invalid-feedback">
+              {{ displayMessage?.name }}
+            </span>
+          </div>
+
+          <!--input field-->
+          <div class="input">
+            <input
+              class="input-field cf-validate"
+              id="cf-email"
+              type="text"
+              name="email"
+              placeholder="Your Email"
+              formControlName="email"
+              [ngClass]="{ 'is-invalid': displayMessage.email }"
+            />
+            <span class="invalid-feedback">
+              {{ displayMessage?.email }}
+            </span>
+          </div>
+
+          <!--input field-->
+          <div class="input">
+            <textarea
+              class="input-field cf-validate"
+              id="cf-message"
+              name="message"
+              rows="5"
+              placeholder="Message"
+              formControlName="message"
+              [ngClass]="{ 'is-invalid': displayMessage.comment }"
+            ></textarea>
+            <span class="invalid-feedback">
+              {{ displayMessage?.message }}
+            </span>
+          </div>
+
+          <div class="alert-container col-md-12"></div>
+
+          <!--submit button-->
+          <div class="submit-button text-center">
+            <button
+              class="main-btn"
+              id="cf-submit"
+              [disabled]="!dataForm.valid || true"
+            >
+              Send Message
+            </button>
+          </div>
+        </form>
+        <app-shimmer
+          *ngIf="loading"
+          height="350px"
+          width="100%"
+          [centerLoader]="true"
+        ></app-shimmer>
+      </div>
+      <!--Contact Form Column End-->
+    </div>
+  </div>
 </div>

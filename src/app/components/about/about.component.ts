@@ -10,18 +10,26 @@ import { environment } from 'src/environments/environment';
 })
 export class AboutComponent implements OnInit {
   aboutData: About;
+  loading: boolean = true;
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
+    this.loading = true;
     this.http
       .get(environment.serviceUrl, {
         params: new HttpParams()
           .set('email', environment.email)
           .set('controller', 'about'),
       })
-      .subscribe((about: About) => {
-        console.log(about);
-        this.aboutData = about;
-      });
+      .subscribe(
+        (about: About) => {
+          this.aboutData = about;
+        },
+        (err) => void 0,
+        () => (this.loading = false)
+      );
+  }
+  imgLoaded(evt) {
+    evt?.target?.classList.remove('loading');
   }
 }

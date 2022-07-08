@@ -1,0 +1,50 @@
+:host {
+	display: block;
+	line-height: 1.75;
+}
+.shimmer{
+  margin-bottom: 8px !important;
+  position: relative;
+  background: transparent linear-gradient(328deg, #ff9800 0%, #e0e0e0 100%)
+    0% 0% no-repeat;
+  overflow: hidden;
+&.center{
+  margin: 0 auto;
+}
+  &::before {
+    display: block;
+    content: "";
+    position: absolute;
+    width: 75%;
+    height: 100%;
+    transform: translateX(-100%) skewX(-45deg);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: loading 1.2s infinite;
+  }
+}
+
+@keyframes loading {
+  100% {
+    transform: translateX(100%) skewX(-45deg);
+  }
+}
+
+
+.shimmer-loaded {
+  color: grey;
+  display:inline-block;
+  -webkit-mask:linear-gradient(-60deg,#000 30%,#0005,#000 70%) right/300% 100%;
+  background-repeat: no-repeat;
+  animation: shimmerLoaded 2.5s infinite;
+  font-size: 50px;
+  max-width:200px;
+}
+
+@keyframes shimmerLoaded {
+  100% {-webkit-mask-position:left}
+}

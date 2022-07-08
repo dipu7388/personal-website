@@ -65,21 +65,26 @@ export class ContactComponent implements OnInit, AfterViewInit {
   private genericValidator: GenericValidator;
   dataForm: FormGroup;
   emailRegex = new RegExp('^[a-zA-Z0-9._]+@[a-zA-Z0-9.]+[.]{1}[a-zA-Z0-9]+$');
-
+  loading: boolean = true;
   @ViewChildren(FormControlName, { read: ElementRef })
   formInputElements: ElementRef[];
 
   ngOnInit() {
+    this.loading = true;
     this.http
       .get(environment.serviceUrl, {
         params: new HttpParams()
           .set('email', environment.email)
           .set('controller', 'contact'),
       })
-      .subscribe((contact: Contact) => {
-        this.contactData = contact;
-        console.log(contact);
-      });
+      .subscribe(
+        (contact: Contact) => {
+          this.contactData = contact;
+          this.socialItems = this.contactData.socialLinks;
+        },
+        (err) => void 0,
+        () => (this.loading = false)
+      );
   }
   ngAfterViewInit(): void {
     // Watch for the blur event from any input element on the form.
@@ -117,7 +122,6 @@ export class ContactComponent implements OnInit, AfterViewInit {
       this.dataForm.disable();
       let url =
         'https://dheerendra-alexa-joke-skill.herokuapp.com/api/sendMail';
-      let url2 = 'https://localhost:3000/api/sendMail';
       this.httpService.post(url, new Map(), adminMailOptions).then((data) => {
         this.dataForm.enable();
         this.dataForm.reset();

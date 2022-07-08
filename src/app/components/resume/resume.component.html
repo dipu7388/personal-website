@@ -3,9 +3,14 @@
     <div class="row">
       <div class="col-md-12">
         <div class="page-heading">
-          <h1 [attr.data-shadow]="resumeData?.title">
+          <h1 *ngIf="!loading" [attr.data-shadow]="resumeData?.title">
             {{ resumeData?.title }}
           </h1>
+          <app-shimmer
+            *ngIf="loading"
+            height="4rem"
+            [centerLoader]="true"
+          ></app-shimmer>
         </div>
       </div>
     </div>
@@ -18,17 +23,19 @@
         </div>
 
         <!--experience timeline start-->
-        <ul class="experience timeline">
+        <ul class="experience timeline" *ngIf="!loading">
           <!--timeline item-->
           <li class="event" *ngFor="let exp of resumeData?.workExperience">
             <h4>{{ exp?.position }}</h4>
             <h5>
               <span class="date"
                 >{{ exp?.duration?.from | date: "MM/YYYY" }} -
-                <ng-container *ngIf="exp?.to">
+                <ng-container *ngIf="exp?.duration?.to">
                   {{ exp?.duration?.to | date: "MM/YYYY" }}
                 </ng-container>
-                <ng-container *ngIf="!exp?.to"> Present </ng-container>
+                <ng-container *ngIf="!exp?.duration?.to">
+                  Present
+                </ng-container>
               </span>
               <span class="company">
                 <ng-container *ngIf="exp?.companyUrl">
@@ -45,6 +52,12 @@
             <p></p>
           </li>
         </ul>
+        <app-shimmer
+          class="timeline"
+          *ngIf="loading"
+          height="305px"
+          width="100%"
+        ></app-shimmer>
         <!--experience timeline end-->
       </div>
       <!--Experience Column End-->
@@ -55,7 +68,7 @@
         </div>
 
         <!--language timeline start-->
-        <ul class="language timeline">
+        <ul class="language timeline" *ngIf="!loading">
           <!--timeline item-->
 
           <li class="event" *ngFor="let lang of resumeData?.languages">
@@ -65,6 +78,7 @@
             </h5>
           </li>
         </ul>
+        <app-shimmer *ngIf="loading" height="305px" width="100%"></app-shimmer>
         <!--education timeline end-->
       </div>
       <!-- languages ends -->
@@ -75,7 +89,7 @@
         </div>
 
         <!--education timeline start-->
-        <ul class="education timeline">
+        <ul class="education timeline" *ngIf="!loading">
           <!--timeline item-->
 
           <li class="event" *ngFor="let edu of resumeData?.education">
@@ -83,10 +97,12 @@
             <h5>
               <span class="date"
                 >{{ edu?.duration?.from | date: "MM/YYYY" }} -
-                <ng-container *ngIf="edu?.to">
+                <ng-container *ngIf="edu?.duration?.to">
                   {{ edu?.duration?.to | date: "MM/YYYY" }}
                 </ng-container>
-                <ng-container *ngIf="!edu?.to"> Present </ng-container>
+                <ng-container *ngIf="!edu?.duration?.to">
+                  Present
+                </ng-container>
               </span>
               <span class="company">
                 <ng-container *ngIf="edu?.universityLocation?.universityUrl">
@@ -112,6 +128,7 @@
             </p>
           </li>
         </ul>
+        <app-shimmer *ngIf="loading" height="305px" width="100%"></app-shimmer>
         <!--education timeline end-->
       </div>
       <!--Education Column End-->
@@ -123,7 +140,7 @@
         </div>
 
         <!--education timeline start-->
-        <ul class="projects timeline">
+        <ul class="projects timeline" *ngIf="!loading">
           <!--timeline item-->
 
           <li class="event" *ngFor="let proj of resumeData?.projects">
@@ -131,10 +148,12 @@
             <h5>
               <span class="date"
                 >{{ proj?.duration?.from | date: "MM/YYYY" }} -
-                <ng-container *ngIf="proj?.to">
+                <ng-container *ngIf="proj?.duration?.to">
                   {{ proj?.duration?.to | date: "MM/YYYY" }}
                 </ng-container>
-                <ng-container *ngIf="!proj?.to"> Present </ng-container>
+                <ng-container *ngIf="!proj?.duration?.to">
+                  Present
+                </ng-container>
               </span>
               <span class="company">
                 <ng-container *ngIf="proj?.projectUrl">
@@ -148,6 +167,7 @@
             <div [innerHtml]="proj?.description"></div>
           </li>
         </ul>
+        <app-shimmer *ngIf="loading" height="305px" width="100%"></app-shimmer>
         <!--education timeline end-->
       </div>
       <!-- Projects ends -->
@@ -162,17 +182,20 @@
         </div>
 
         <!--skill item-->
-        <div class="skill-item" *ngFor="let s of resumeData?.feSkills">
-          <h4 class="progress-title">{{ s?.skillName }}</h4>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              [style.width]="s?.skillconfidenceValue + '%'"
-            >
-              <div class="progress-value">{{ s?.skillconfidenceValue }}</div>
+        <ng-container *ngIf="!loading">
+          <div class="skill-item" *ngFor="let s of resumeData?.feSkills">
+            <h4 class="progress-title">{{ s?.skillName }}</h4>
+            <div class="progress">
+              <div
+                class="progress-bar"
+                [style.width]="s?.skillconfidenceValue + '%'"
+              >
+                <div class="progress-value">{{ s?.skillconfidenceValue }}</div>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-container>
+        <app-shimmer *ngIf="loading" height="305px" width="100%"></app-shimmer>
       </div>
 
       <div class="col-lg-6 skills">
@@ -181,17 +204,20 @@
         </div>
 
         <!--skill item-->
-        <div class="skill-item" *ngFor="let s of resumeData?.beSkills">
-          <h4 class="progress-title">{{ s?.skillName }}</h4>
-          <div class="progress">
-            <div
-              class="progress-bar"
-              [style.width]="s?.skillconfidenceValue + '%'"
-            >
-              <div class="progress-value">{{ s?.skillconfidenceValue }}</div>
+        <ng-container *ngIf="!loading">
+          <div class="skill-item" *ngFor="let s of resumeData?.beSkills">
+            <h4 class="progress-title">{{ s?.skillName }}</h4>
+            <div class="progress">
+              <div
+                class="progress-bar"
+                [style.width]="s?.skillconfidenceValue + '%'"
+              >
+                <div class="progress-value">{{ s?.skillconfidenceValue }}</div>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-container>
+        <app-shimmer *ngIf="loading" height="305px" width="100%"></app-shimmer>
       </div>
       <!-- Coding Skills Column End -->
     </div>

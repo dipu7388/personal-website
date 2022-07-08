@@ -153,7 +153,6 @@ header .back-button:before {
 }
 
 .row{
-  display: block !important;
   width: 100%;
 }
 
@@ -528,9 +527,9 @@ span {
 p {
   line-height: 1.65; }
 
-img {
-  width: 100%;
-  height: auto; }
+// img {
+//   width: 100%;
+//   height: auto; }
 
 a,
 a:hover,
